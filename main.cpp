@@ -1,13 +1,13 @@
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <limits>
-#include <vector>
-#include <sstream>
-#include <numeric>
-#include <ctime>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+#include <limits>
+#include <numeric>
+#include <sstream>
+#include <string>
 #include <typeinfo>
+#include <vector>
 
 using namespace std;
 
@@ -16,19 +16,21 @@ using namespace std;
  * (multi-line comment)
  */
 
-int globalInt = 69; // global int
+int globalInt = 69;      // global int
 const double PI = 3.142; // global const double
 
-int main (int argc, char** argv) {
+int main(int argc, char **argv) {
 
   cout << "Hellorld!" << endl;
 
-  bool isTrue = true; // boolean value
+  bool isTrue = true;   // boolean value
   char letterAyy = 'A'; // char value
 
   // integer values
-  cout << "Min unsigned short int: " << numeric_limits<unsigned short int>::min() << endl;
-  cout << "Max unsigned short int: " << numeric_limits<unsigned short int>::max() << endl;
+  cout << "Min unsigned short int: "
+       << numeric_limits<unsigned short int>::min() << endl;
+  cout << "Max unsigned short int: "
+       << numeric_limits<unsigned short int>::max() << endl;
   cout << "Min short int: " << numeric_limits<short int>::min() << endl;
   cout << "Max short int: " << numeric_limits<short int>::max() << endl;
   cout << "Min int: " << numeric_limits<int>::min() << endl;
@@ -69,9 +71,8 @@ int main (int argc, char** argv) {
   // %c = char
   // %d = int
   // %5d = int with 5 characher left pad
-  // %.3f = float with 3 decimal places, this will round up/down based on any truncated decimal places
-  // %s = string
-  // \n = new line
+  // %.3f = float with 3 decimal places, this will round up/down based on any
+  // truncated decimal places %s = string \n = new line
   printf("%c %d %5d %.3f %s\n", 'X', 420, 69, 1.100999, "ayooo!");
 
   // strings
@@ -89,14 +90,16 @@ int main (int argc, char** argv) {
 
   cout << endl;
 
-  int number1 = stoi(answer1); // stoi converts a string to an integer, stof does the same for floats
+  int number1 = stoi(answer1); // stoi converts a string to an integer, stof
+                               // does the same for floats
   int number2 = stoi(answer2);
 
   printf("%d + %d = %d\n", number1, number2, (number1 + number2));
   printf("%d - %d = %d\n", number1, number2, (number1 - number2));
   printf("%d * %d = %d\n", number1, number2, (number1 * number2));
   printf("%d / %d = %d\n", number1, number2, (number1 / number2));
-  printf("%d %% %d = %d\n", number1, number2, (number1 % number2)); // percent sign needs to be escaped
+  printf("%d %% %d = %d\n", number1, number2,
+         (number1 % number2)); // percent sign needs to be escaped
 
   // conditional operators: > < >= <= == !=
   // logical operators: && || !
@@ -123,10 +126,88 @@ int main (int argc, char** argv) {
   bool orderStock = (stockLevel < 50) ? true : false; // true
 
   cout << "Do we need to order stock? " << orderStock << endl;
-  cout.setf(ios::boolalpha); // set cout to print bools as true/false instead of 1/0.
+  cout.setf(
+      ios::boolalpha); // set cout to print bools as true/false instead of 1/0.
   cout << "Do we need to order stock? " << orderStock << endl;
 
-  
+  // arrays
+
+  int arrNumbers1[10] = {1}; // arrays with 10 elements, element 0 = 10
+  int arrNumbers2[] = {1, 2,
+                       3}; // array size is inferred from the initial values
+
+  int arrNumbers3[5] = {8, 9};
+  cout << "1st value: " << arrNumbers3[0] << endl;
+  arrNumbers3[0] = 7;
+  cout << "1st value: " << arrNumbers3[0] << endl;
+
+  int arrNumbers4[2][2][2] = {
+      {{1, 2}, {3, 4}},
+      {{5, 6}, {7, 8}}}; // multidimentional arrays, here we have a 3d array -
+                         // [layers][columns][rows]
+  cout << arrNumbers4[0][1][1]
+       << endl; // first layer, second column, second row (4)
+
+  // vectors
+
+  vector<int> vecNumbers1(2); // vector of ints with an initial size of 2
+  vecNumbers1[0] = 1;         // access elements the same way as an array
+  vecNumbers1[1] = 2;
+  vecNumbers1.push_back(
+      3); // resize the vector using push_back(), size is now 3
+
+  cout << "Vector size: " << vecNumbers1.size() << endl;
+
+  // looping
+
+  // while loop
+  int idx = 1;
+  while (idx <= 20) {
+    if ((idx % 2) == 0) {
+      idx += 1;
+      continue;
+    }
+    if (idx == 15)
+      break;
+    cout << "idx: " << idx << endl;
+    idx += 1;
+  }
+
+  // ranging over a stringstream
+  vector<string> words;
+  stringstream sstream("the quick brown fox jumps over the lazy dog");
+  string word;
+  while (getline(sstream, word, ' ')) {
+    words.push_back(word);
+  }
+
+  // for loop, looping over elements of words vector
+  for (int idx = 0; idx < words.size(); ++idx) {
+    cout << words[idx] << endl;
+  }
+
+  // abbreviated for loop
+  int arrNumbers5[] = {1, 2, 3, 4, 5};
+  for (auto e : arrNumbers5)
+    cout << e << endl;
+
+  // do-while loop
+  srand(time(NULL));
+  int secretNumber = rand() % 11;
+  int guess = 0;
+
+  do {
+    cout << "Guess a number: ";
+    cin >> guess;
+    if (guess > secretNumber)
+      cout << "Too big!\n";
+    if (guess < secretNumber)
+      cout << "Too small!\n";
+  } while (secretNumber != guess);
+
+  cout << "You guessed it!" << endl;
+
+  // strings
 
   return 0;
 }
