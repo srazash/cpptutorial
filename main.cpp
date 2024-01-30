@@ -209,5 +209,35 @@ int main(int argc, char **argv) {
 
   // strings
 
+  string s1 = "I'm a string!";
+  cout << "1st letter of string: " << s1[0] << endl; // strings can be accessed like an array
+  cout << "Last letter of string: " << s1.back() << endl; // access the last character with the back() function
+  cout << "Length of string: " << s1.length() << endl; // access the length of the string
+
+  string s2 = s1; // copy a string
+  string s3(s2, 6); // copy a string from a specific character
+  string s4 = s1 + "!!"; // concatinate a string
+  s4.append("!!"); // append a string
+
+  s4.erase(12, s4.length() - 1); // erase string from element 12 to the end
+  cout << "s4: " << s4 << endl;
+
+  if (s4.find("string") != string::npos)
+    cout << "s4 index: " << s4.find("string") << endl; // find a string and return it's index within a string
+
+  cout << "Substring: " << s4.substr(6, 6) << endl;
+  string sn = to_string(1 + 2);
+  cout << "Number converted to a string: " << sn << endl;
+
+  // character functions
+
+  char letterZ = 'Z';
+  char num9 = '9';
+  char space = ' ';
+  cout << "Is letterZ a letter or a number: " << isalnum(letterZ) << endl; // check if a char is a letter or number
+  cout << "Is letterZ a letter: " << isalpha(letterZ) << endl; // check if a char is a letter
+  cout << "Is num9 a letter: " << isdigit(num9) << endl; // check if a char is a number
+  cout << "Is space a space: " << isspace(space) << endl; // check if a char is a letter
+
   return 0;
 }
