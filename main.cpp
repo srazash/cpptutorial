@@ -11,6 +11,8 @@
 
 using namespace std;
 
+double AddNumbers(double a, double b); // function prototype
+
 /*
  * global variables
  * (multi-line comment)
@@ -239,5 +241,45 @@ int main(int argc, char **argv) {
   cout << "Is num9 a letter: " << isdigit(num9) << endl; // check if a char is a number
   cout << "Is space a space: " << isspace(space) << endl; // check if a char is a letter
 
+  // math functions
+  // https://en.cppreference.com/w/cpp/numeric/math
+
+  cout << "abs(-10) = " << abs(-10) << endl; // return the absolute value
+  cout << "max(100, 1) = " << max(10, 1) << endl; // return the largest value
+  cout << "min(100, 1) = " << min(10, 1) << endl; // return the smallest value
+  cout << "fmax(1.1, 9.9) = " << fmax(1.1, 9.9) << endl; // return the largest float
+  cout << "fmin(1.1, 9.9) = " << fmin(1.1, 9.9) << endl; // return the smallest float
+  cout << "ceil(1.25) = " << ceil(1.25) << endl; // round up to the nearest whole value
+  cout << "floor(1.25) = " << floor(1.25) << endl; // round down to the nearest whole value
+  cout << "round(1.25) = " << round(1.25) << endl; // round to the nearest whole value
+  cout << "pow(2, 3) = " << pow(2, 3) << endl; // return the value raised to the given power
+  cout << "sqrt(100) = " << sqrt(100) << endl; // return the square root
+  cout << "cbrt(1000) = " << cbrt(1000) << endl; // return the cube root
+
+  // e^x
+  cout << "exp(1) = " << exp(1) << endl; // return e raised to the given power
+
+  // 2^x
+  cout << "exp2(1) = " << exp2(1) << endl; // return 2 raised to the given power
+
+  // e * e * e = 20(ish), so log(20.079) = 3(ish)
+  cout << "log(20.079) = " << log(20.079) << endl; // return the natural logarithm of given value
+
+  // 2*2*2 = 8
+  cout << "log2(8) = " << log2(8) << endl; // return the base 2 logarithm of given value
+
+  // hypotenuse = sqrt(a^2 + b^2)
+  cout << "hypot(2, 3) = " << hypot(2, 3) << endl; // return the square root of the sum of the squares of two values
+
+  // "And many more." - Brian Butterfield
+
+  // functions
+  printf("%.1f + %.1f = %.1f\n", 5.0, 5.0, AddNumbers(5.0, 5.0));
+
   return 0;
+}
+
+// function declaration
+double AddNumbers(double a = 0, double b = 0) {
+  return a + b;
 }
