@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
   cout << "Min long: " << numeric_limits<long>::min() << endl;
   cout << "Max long: " << numeric_limits<long>::max() << endl;
 
-  // floarting point values
+  // floating point values
   cout << "Min float: " << numeric_limits<float>::min() << endl;
   cout << "Max float: " << numeric_limits<float>::max() << endl;
   cout << "Min double: " << numeric_limits<double>::min() << endl;
@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
   // printf data types
   // %c = char
   // %d = int
-  // %5d = int with 5 characher left pad
+  // %5d = int with 5 character left pad
   // %.3f = float with 3 decimal places, this will round up/down based on any
   // truncated decimal places %s = string \n = new line
   printf("%c %d %5d %.3f %s\n", 'X', 420, 69, 1.100999, "ayooo!");
@@ -152,7 +152,7 @@ int main(int argc, char **argv) {
 
   int arrNumbers4[2][2][2] = {
       {{1, 2}, {3, 4}},
-      {{5, 6}, {7, 8}}}; // multidimentional arrays, here we have a 3d array -
+      {{5, 6}, {7, 8}}}; // multidimensional arrays, here we have a 3d array -
                          // [layers][columns][rows]
   cout << arrNumbers4[0][1][1]
        << endl; // first layer, second column, second row (4)
@@ -225,7 +225,7 @@ int main(int argc, char **argv) {
 
   string s2 = s1; // copy a string
   string s3(s2, 6); // copy a string from a specific character
-  string s4 = s1 + "!!"; // concatinate a string
+  string s4 = s1 + "!!"; // concatenate a string
   s4.append("!!"); // append a string
 
   s4.erase(12, s4.length() - 1); // erase string from element 12 to the end
@@ -349,7 +349,7 @@ void AssignAge(int *age) {
 
 // REFERENCE TYPES can be passed in without needing to be dereferenced
 // an array is a pointer already so we can pass it in and work with it directly
-// no need to pass in the array as &array or derefrence it with *array
+// no need to pass in the array as &array or dereference it with *array
 void DoubleArray(int *array, int size) {
   for (int idx = 0; idx < size; ++idx) {
     array[idx] = array[idx] * 2;

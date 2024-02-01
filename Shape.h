@@ -31,12 +31,12 @@ class Shape {
 
         static int GetNumOfShapes(); // we need a static method to access a static field
 
-        virtual double CalculateArea(); // virtual means the method can be overrided
-        // overrided methods can be different in subsclasses but share the same name
-        // in this case, the area of a square and a circle are calulated differently
+        virtual double CalculateArea(); // virtual means the method can be overriden
+        // overriden methods can be different in subclasses but share the same name
+        // in this case, the area of a square and a circle are calculated differently
         // but they both have an area that requires a method to call on to return
 
-    private: // accessible only within this class, not subclasses
+    //private: // accessible only within this class, not subclasses
 
 };
 
