@@ -9,11 +9,16 @@
 #include <typeinfo>
 #include <vector>
 
+// include Shape.h and Circle.h
+#include "Shape.h"
+#include "Circle.h"
+
 using namespace std; // means we can access std::cout and std::cin as cout and cin
 
 double AddNumbers(double a, double b); // function prototype
 void AssignAge(int *age);
 void DoubleArray(int *array, int size);
+void PrintArea(Shape &shape);
 
 /*
  * global variables
@@ -321,6 +326,14 @@ int main(int argc, char **argv) {
     cout << "exception: " << exp << endl;
   }
 
+  Shape square(10);
+  Shape rectangle(10, 25);
+  Circle circle(10);
+
+  PrintArea(square);
+  PrintArea(rectangle);
+  PrintArea(circle);
+
   return 0;
 }
 
@@ -341,4 +354,8 @@ void DoubleArray(int *array, int size) {
   for (int idx = 0; idx < size; ++idx) {
     array[idx] = array[idx] * 2;
   }
+}
+
+void PrintArea(Shape &shape) {
+  cout << "Area: " << shape.CalculateArea() << endl;
 }
