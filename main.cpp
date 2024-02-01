@@ -293,7 +293,7 @@ int main(int argc, char **argv) {
   cout << "Address is " << ageptr << endl; // referencing the pointer gives us the memory address
   cout << "Value is " << *ageptr << endl; // or we can dereference the pointer to access the value
 
-  int array[] = {1, 2, 69, 420};
+  int array[] = {4, 20, 69, 420};
   int *arrayptr = array;
   cout << "array[0] address: " << arrayptr << endl;
   arrayptr++; // increment the pointer
@@ -302,6 +302,23 @@ int main(int argc, char **argv) {
   DoubleArray(array, 4);
   for (int idx = 0; idx < 4; ++idx) {
     cout << array[idx] << endl;
+  }
+
+  // exception handling
+
+  double d3 = 10, d4 = 0;
+
+  // code that may cause an error should be executed within a TRY block
+  try {
+    if (d3 == 0 || d4 == 0) {
+      throw "division by zero error"; // throw custom error
+    } else {
+      printf("%.1f / %.1f = %.1f\n", d3, d4, (d3 / d4));
+    }
+  }
+  // if an error is thrown we need to catch the error
+  catch (const char *exp) {
+    cout << "exception: " << exp << endl;
   }
 
   return 0;
