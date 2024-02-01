@@ -9,9 +9,11 @@
 #include <typeinfo>
 #include <vector>
 
-using namespace std;
+using namespace std; // means we can access std::cout and std::cin as cout and cin
 
 double AddNumbers(double a, double b); // function prototype
+void AssignAge(int *age);
+void DoubleArray(int *array, int size);
 
 /*
  * global variables
@@ -274,7 +276,33 @@ int main(int argc, char **argv) {
   // "And many more." - Brian Butterfield
 
   // functions
+  // a function prototype (the function signature) must be declared at the top of the source files
+  // (after any #includes) then the full function can be written further down the source file
+
   printf("%.1f + %.1f = %.1f\n", 5.0, 5.0, AddNumbers(5.0, 5.0));
+
+  // pointers
+
+  int age = 0;
+  AssignAge(&age); // we pass in the address using the REFERENCE operator (&)
+  cout << "Age is " << age << endl;
+
+  // we can declare a pointer
+  int *ageptr = NULL; // we assign it NULL if it doesn't point to anything yet
+  ageptr = &age; // we assign an address to the pointer using the reference operator
+  cout << "Address is " << ageptr << endl; // referencing the pointer gives us the memory address
+  cout << "Value is " << *ageptr << endl; // or we can dereference the pointer to access the value
+
+  int array[] = {1, 2, 69, 420};
+  int *arrayptr = array;
+  cout << "array[0] address: " << arrayptr << endl;
+  arrayptr++; // increment the pointer
+  cout << "array[1] address: " << arrayptr << endl;
+
+  DoubleArray(array, 4);
+  for (int idx = 0; idx < 4; ++idx) {
+    cout << array[idx] << endl;
+  }
 
   return 0;
 }
@@ -282,4 +310,18 @@ int main(int argc, char **argv) {
 // function declaration
 double AddNumbers(double a = 0, double b = 0) {
   return a + b;
+}
+
+// function takes a POINTER as an argument (*)
+void AssignAge(int *age) {
+  *age = 25; // DEREFERENCE the reference passed in as the argument (*)
+}
+
+// REFERENCE TYPES can be passed in without needing to be dereferenced
+// an array is a pointer already so we can pass it in and work with it directly
+// no need to pass in the array as &array or derefrence it with *array
+void DoubleArray(int *array, int size) {
+  for (int idx = 0; idx < size; ++idx) {
+    array[idx] = array[idx] * 2;
+  }
 }
