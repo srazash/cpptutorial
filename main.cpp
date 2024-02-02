@@ -35,6 +35,32 @@ class ACircle : public AShape {
     double Area() override { return 3.14159 * pow((this->width / 2), 2); }
 };
 
+// STRUCTS
+// structs are generally used to create new types, but can contain constructors and methods
+// like a class. unlike a class, everything within a struct is public by default.
+struct SShape {
+  double height, width;
+  SShape(double height = 1, double width = 1) {
+    this->height = height;
+    this->width = width;
+  }
+  double Area() {
+    return this->height * this->width;
+  }
+  private:
+    int id;
+};
+
+// like classes, structs can inherit from each other
+struct SCircle : SShape {
+  SCircle(double width) {
+    this->width = width;
+  }
+  double Area() {
+    return 3.14159 * pow((this->width / 2), 2);
+  }
+};
+
 // function prototypes
 double AddNumbers(double a, double b);
 void AssignAge(int *age);
@@ -370,6 +396,7 @@ int main(int argc, char **argv) {
     cout << "exception: " << exp << endl;
   }
 
+  // instantiate some shapes and a circle
   Shape square(10);
   Shape rectangle(10, 25);
   Circle circle(10);
@@ -380,8 +407,13 @@ int main(int argc, char **argv) {
 
   // Abstract Classes
   ACircle circle2(10);
-
   PrintAArea(circle2);
+
+  // Structs
+  SShape rectangle2(10, 25);
+  SCircle circle3(10);
+  cout << "Area: " << rectangle2.Area() << endl;
+  cout << "Area: " << circle3.Area() << endl;
 
   return 0;
 }
