@@ -8,10 +8,10 @@
 #include "Shape.h"
 
 class Circle : public Shape {
-    public:
-        Circle(double width);
-        virtual ~Circle();
-        double CalculateArea();
+public:
+  Circle(double width);
+  virtual ~Circle();
+  double Area() override;
 };
 
 #endif

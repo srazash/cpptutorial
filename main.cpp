@@ -10,15 +10,37 @@
 #include <vector>
 
 // include Shape.h and Circle.h
-#include "Shape.h"
 #include "Circle.h"
+#include "Shape.h"
 
-using namespace std; // means we can access std::cout and std::cin as cout and cin
+using namespace std; // means we can access std::cout and std::cin as cout and
+// cin
 
-double AddNumbers(double a, double b); // function prototype
+// Abstract Classes
+// abstract classes cannot be instantiated, they only contain pure virtual
+// functions - these have no implementation. from these abstract classes
+// we can creat subclasses, such as here we have created an abstract equivalent
+// to the Shape class and Circle subclass.
+class AShape {
+  public:
+    virtual double Area() = 0;
+};
+
+class ACircle : public AShape {
+  protected:
+    double width;
+
+  public:
+    ACircle(double width) { this->width = width; };
+    double Area() override { return 3.14159 * pow((this->width / 2), 2); }
+};
+
+// function prototypes
+double AddNumbers(double a, double b);
 void AssignAge(int *age);
 void DoubleArray(int *array, int size);
 void PrintArea(Shape &shape);
+void PrintAArea(AShape &shape);
 
 /*
  * global variables
@@ -219,20 +241,24 @@ int main(int argc, char **argv) {
   // strings
 
   string s1 = "I'm a string!";
-  cout << "1st letter of string: " << s1[0] << endl; // strings can be accessed like an array
-  cout << "Last letter of string: " << s1.back() << endl; // access the last character with the back() function
-  cout << "Length of string: " << s1.length() << endl; // access the length of the string
+  cout << "1st letter of string: " << s1[0]
+       << endl; // strings can be accessed like an array
+  cout << "Last letter of string: " << s1.back()
+       << endl; // access the last character with the back() function
+  cout << "Length of string: " << s1.length()
+       << endl; // access the length of the string
 
-  string s2 = s1; // copy a string
-  string s3(s2, 6); // copy a string from a specific character
+  string s2 = s1;        // copy a string
+  string s3(s2, 6);      // copy a string from a specific character
   string s4 = s1 + "!!"; // concatenate a string
-  s4.append("!!"); // append a string
+  s4.append("!!");       // append a string
 
   s4.erase(12, s4.length() - 1); // erase string from element 12 to the end
   cout << "s4: " << s4 << endl;
 
   if (s4.find("string") != string::npos)
-    cout << "s4 index: " << s4.find("string") << endl; // find a string and return it's index within a string
+    cout << "s4 index: " << s4.find("string")
+         << endl; // find a string and return it's index within a string
 
   cout << "Substring: " << s4.substr(6, 6) << endl;
   string sn = to_string(1 + 2);
@@ -243,24 +269,34 @@ int main(int argc, char **argv) {
   char letterZ = 'Z';
   char num9 = '9';
   char space = ' ';
-  cout << "Is letterZ a letter or a number: " << isalnum(letterZ) << endl; // check if a char is a letter or number
-  cout << "Is letterZ a letter: " << isalpha(letterZ) << endl; // check if a char is a letter
-  cout << "Is num9 a letter: " << isdigit(num9) << endl; // check if a char is a number
-  cout << "Is space a space: " << isspace(space) << endl; // check if a char is a letter
+  cout << "Is letterZ a letter or a number: " << isalnum(letterZ)
+       << endl; // check if a char is a letter or number
+  cout << "Is letterZ a letter: " << isalpha(letterZ)
+       << endl; // check if a char is a letter
+  cout << "Is num9 a letter: " << isdigit(num9)
+       << endl; // check if a char is a number
+  cout << "Is space a space: " << isspace(space)
+       << endl; // check if a char is a letter
 
   // math functions
   // https://en.cppreference.com/w/cpp/numeric/math
 
-  cout << "abs(-10) = " << abs(-10) << endl; // return the absolute value
+  cout << "abs(-10) = " << abs(-10) << endl;      // return the absolute value
   cout << "max(100, 1) = " << max(10, 1) << endl; // return the largest value
   cout << "min(100, 1) = " << min(10, 1) << endl; // return the smallest value
-  cout << "fmax(1.1, 9.9) = " << fmax(1.1, 9.9) << endl; // return the largest float
-  cout << "fmin(1.1, 9.9) = " << fmin(1.1, 9.9) << endl; // return the smallest float
-  cout << "ceil(1.25) = " << ceil(1.25) << endl; // round up to the nearest whole value
-  cout << "floor(1.25) = " << floor(1.25) << endl; // round down to the nearest whole value
-  cout << "round(1.25) = " << round(1.25) << endl; // round to the nearest whole value
-  cout << "pow(2, 3) = " << pow(2, 3) << endl; // return the value raised to the given power
-  cout << "sqrt(100) = " << sqrt(100) << endl; // return the square root
+  cout << "fmax(1.1, 9.9) = " << fmax(1.1, 9.9)
+       << endl; // return the largest float
+  cout << "fmin(1.1, 9.9) = " << fmin(1.1, 9.9)
+       << endl; // return the smallest float
+  cout << "ceil(1.25) = " << ceil(1.25)
+       << endl; // round up to the nearest whole value
+  cout << "floor(1.25) = " << floor(1.25)
+       << endl; // round down to the nearest whole value
+  cout << "round(1.25) = " << round(1.25)
+       << endl; // round to the nearest whole value
+  cout << "pow(2, 3) = " << pow(2, 3)
+       << endl; // return the value raised to the given power
+  cout << "sqrt(100) = " << sqrt(100) << endl;   // return the square root
   cout << "cbrt(1000) = " << cbrt(1000) << endl; // return the cube root
 
   // e^x
@@ -270,19 +306,24 @@ int main(int argc, char **argv) {
   cout << "exp2(1) = " << exp2(1) << endl; // return 2 raised to the given power
 
   // e * e * e = 20(ish), so log(20.079) = 3(ish)
-  cout << "log(20.079) = " << log(20.079) << endl; // return the natural logarithm of given value
+  cout << "log(20.079) = " << log(20.079)
+       << endl; // return the natural logarithm of given value
 
   // 2*2*2 = 8
-  cout << "log2(8) = " << log2(8) << endl; // return the base 2 logarithm of given value
+  cout << "log2(8) = " << log2(8)
+       << endl; // return the base 2 logarithm of given value
 
   // hypotenuse = sqrt(a^2 + b^2)
-  cout << "hypot(2, 3) = " << hypot(2, 3) << endl; // return the square root of the sum of the squares of two values
+  cout
+      << "hypot(2, 3) = " << hypot(2, 3)
+      << endl; // return the square root of the sum of the squares of two values
 
   // "And many more." - Brian Butterfield
 
   // functions
-  // a function prototype (the function signature) must be declared at the top of the source files
-  // (after any #includes) then the full function can be written further down the source file
+  // a function prototype (the function signature) must be declared at the top
+  // of the source files (after any #includes) then the full function can be
+  // written further down the source file
 
   printf("%.1f + %.1f = %.1f\n", 5.0, 5.0, AddNumbers(5.0, 5.0));
 
@@ -294,9 +335,12 @@ int main(int argc, char **argv) {
 
   // we can declare a pointer
   int *ageptr = NULL; // we assign it NULL if it doesn't point to anything yet
-  ageptr = &age; // we assign an address to the pointer using the reference operator
-  cout << "Address is " << ageptr << endl; // referencing the pointer gives us the memory address
-  cout << "Value is " << *ageptr << endl; // or we can dereference the pointer to access the value
+  ageptr =
+      &age; // we assign an address to the pointer using the reference operator
+  cout << "Address is " << ageptr
+       << endl; // referencing the pointer gives us the memory address
+  cout << "Value is " << *ageptr
+       << endl; // or we can dereference the pointer to access the value
 
   int array[] = {4, 20, 69, 420};
   int *arrayptr = array;
@@ -334,13 +378,16 @@ int main(int argc, char **argv) {
   PrintArea(rectangle);
   PrintArea(circle);
 
+  // Abstract Classes
+  ACircle circle2(10);
+
+  PrintAArea(circle2);
+
   return 0;
 }
 
 // function declaration
-double AddNumbers(double a = 0, double b = 0) {
-  return a + b;
-}
+double AddNumbers(double a = 0, double b = 0) { return a + b; }
 
 // function takes a POINTER as an argument (*)
 void AssignAge(int *age) {
@@ -356,6 +403,6 @@ void DoubleArray(int *array, int size) {
   }
 }
 
-void PrintArea(Shape &shape) {
-  cout << "Area: " << shape.CalculateArea() << endl;
-}
+void PrintArea(Shape &shape) { cout << "Area: " << shape.Area() << endl; }
+
+void PrintAArea(AShape &shape) { cout << "Area: " << shape.Area() << endl; }
