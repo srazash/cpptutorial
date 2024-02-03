@@ -22,42 +22,85 @@ using namespace std; // means we can access std::cout and std::cin as cout and
 // we can creat subclasses, such as here we have created an abstract equivalent
 // to the Shape class and Circle subclass.
 class AShape {
-  public:
-    virtual double Area() = 0;
+public:
+  virtual double Area() = 0;
 };
 
 class ACircle : public AShape {
-  protected:
-    double width;
+protected:
+  double width;
 
-  public:
-    ACircle(double width) { this->width = width; };
-    double Area() override { return 3.14159 * pow((this->width / 2), 2); }
+public:
+  ACircle(double width) { this->width = width; };
+  double Area() override { return 3.14159 * pow((this->width / 2), 2); }
 };
 
 // STRUCTS
-// structs are generally used to create new types, but can contain constructors and methods
-// like a class. unlike a class, everything within a struct is public by default.
+// structs are generally used to create new types, but can contain constructors
+// and methods like a class. unlike a class, everything within a struct is
+// public by default.
 struct SShape {
   double height, width;
   SShape(double height = 1, double width = 1) {
     this->height = height;
     this->width = width;
   }
-  double Area() {
-    return this->height * this->width;
-  }
-  private:
-    int id;
+  double Area() { return this->height * this->width; }
+
+private:
+  int id;
 };
 
 // like classes, structs can inherit from each other
 struct SCircle : SShape {
-  SCircle(double width) {
-    this->width = width;
+  SCircle(double width) { this->width = width; }
+  double Area() { return 3.14159 * pow((this->width / 2), 2); }
+};
+
+// operator overloading class
+class Box {
+public:
+  double length, width, depth;
+  string boxString;
+  Box() {
+    this->length = 1;
+    this->width = 1;
+    this->depth = 1;
   }
-  double Area() {
-    return 3.14159 * pow((this->width / 2), 2);
+  Box(double l, double w, double d) {
+    this->length = l;
+    this->width = w;
+    this->depth = d;
+  }
+
+  // here we have overloaded the ++ operator, so using ++ on an instance
+  // of the Box class will increase the objects dimentions.
+  Box &operator++() {
+    this->length++;
+    this->width++;
+    this->depth++;
+    return *this;
+  }
+
+  operator const char *() {
+    ostringstream boxStream;
+    boxStream << "Box: " << this->length << " x " << this->width << " x "
+              << this->depth;
+    this->boxString = boxStream.str();
+    return boxString.c_str();
+  }
+
+  Box operator+(const Box &box2) {
+    Box boxSum;
+    boxSum.length = this->length + box2.length;
+    boxSum.width = this->width + box2.width;
+    boxSum.depth = this->depth + box2.depth;
+    return boxSum;
+  }
+
+  bool operator==(const Box &box2) {
+    return ((this->length == box2.length) && (this->width == box2.width) &&
+            (this->depth == box2.depth));
   }
 };
 
@@ -414,6 +457,16 @@ int main(int argc, char **argv) {
   SCircle circle3(10);
   cout << "Area: " << rectangle2.Area() << endl;
   cout << "Area: " << circle3.Area() << endl;
+
+  // Operator Overloading
+  Box box(10, 10, 10);
+  ++box;
+  cout << box << endl;
+
+  Box box2(5, 5, 5);
+  cout << "box + box2 = " << (box + box2) << endl;
+
+  cout << "box == box2 ? " << (box == box2) << endl;
 
   return 0;
 }
