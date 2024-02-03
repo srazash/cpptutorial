@@ -9,6 +9,7 @@
 #include <string>
 #include <typeinfo>
 #include <vector>
+#include <algorithm>
 
 // include Shape.h and Circle.h
 #include "Circle.h"
@@ -477,7 +478,7 @@ int main(int argc, char **argv) {
   sort(vecVals.begin(), vecVals.end(), [](int x, int y) { return x < y; });
 
   for (auto val : vecVals)
-    cout << val << endl;
+    cout << "sorted vec: " << val << endl;
 
   vector<int> vecVals2 = GenerateRandVec(10, 1, 50);
   vector<int> evenVecVals;
@@ -485,7 +486,7 @@ int main(int argc, char **argv) {
   copy_if(vecVals2.begin(), vecVals2.end(), back_inserter(evenVecVals), [](int x) { return (x % 2) == 0; });
 
   for (auto val : evenVecVals)
-    cout << val << endl;
+    cout << "even vec: " << val << endl;
 
   return 0;
 }
