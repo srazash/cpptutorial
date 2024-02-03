@@ -112,7 +112,6 @@ void AssignAge(int *age);
 void DoubleArray(int *array, int size);
 void PrintArea(Shape &shape);
 void PrintAArea(AShape &shape);
-vector<int> GenerateRandVec(int numbOfValues, int min, int max);
 
 /*
  * global variables
@@ -471,23 +470,6 @@ int main(int argc, char **argv) {
 
   cout << "box == box2 ? " << (box == box2) << endl;
 
-  // Lambda Expresions
-  // allows us to perform list operations in a single line of code
-  vector<int> vecVals = GenerateRandVec(10, 1, 50);
-
-  sort(vecVals.begin(), vecVals.end(), [](int x, int y) { return x < y; });
-
-  for (auto val : vecVals)
-    cout << "sorted vec: " << val << endl;
-
-  vector<int> vecVals2 = GenerateRandVec(10, 1, 50);
-  vector<int> evenVecVals;
-
-  copy_if(vecVals2.begin(), vecVals2.end(), back_inserter(evenVecVals), [](int x) { return (x % 2) == 0; });
-
-  for (auto val : evenVecVals)
-    cout << "even vec: " << val << endl;
-
   return 0;
 }
 
@@ -511,19 +493,3 @@ void DoubleArray(int *array, int size) {
 void PrintArea(Shape &shape) { cout << "Area: " << shape.Area() << endl; }
 
 void PrintAArea(AShape &shape) { cout << "Area: " << shape.Area() << endl; }
-
-vector<int> GenerateRandVec(int numbOfValues, int min, int max) {
-  vector<int> vecValues;
-
-  srand(time(NULL));
-
-  int idx = 0, randVal = 0;
-
-  while (idx < numbOfValues) {
-    randVal = min + rand() % ((max + 1) - min);
-    vecValues.push_back(randVal);
-    idx++;
-  }
-
-  return vecValues;
-}
