@@ -1,6 +1,6 @@
 MAKEFLAGS += --silent
 
-build:
+main:
 	c++ main.cpp Shape.cpp Circle.cpp
 
 lambda:
@@ -11,5 +11,13 @@ run:
 	./a.out
 	rm -f a.out
 
+runwin:
+	c++ main.cpp Shape.cpp Circle.cpp
+	./a.exe
+	rm a.exe
+
 clean:
 	rm -f *.out
+
+cleanwin:
+	rm *.exe
