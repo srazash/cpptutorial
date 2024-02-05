@@ -1,15 +1,13 @@
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <iterator>
 #include <limits>
-#include <numeric>
 #include <sstream>
 #include <string>
 #include <typeinfo>
 #include <vector>
-#include <algorithm>
 
 // include Shape.h and Circle.h
 #include "Circle.h"
