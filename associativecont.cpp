@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iterator>
+#include <map>
 #include <set>
 
 using namespace std;
@@ -87,6 +88,33 @@ int main(int argc, char** argv) {
         cout << i << ", ";
     }
     cout << "end" << endl;
+    }
+
+    // MAPS
+    // a maps stores key-value pairs, keys cannot be duplicates, but values can
+    map<int, string> mymap;
+
+    // we can insert k-v pairs
+    mymap.insert(pair<int, string>(1, "Chris"));
+    mymap.insert(pair<int, string>(2, "Meg"));
+    mymap.insert(pair<int, string>(3, "Stewie"));
+    mymap.insert(pair<int, string>(4, "Brian"));
+
+    // we can find pairs by their key
+    auto match = mymap.find(1);
+    // we can access the keys/value of a found pair using ->first and ->second
+    cout << match->first << ": " << match->second << endl;
+
+    // we can use iterators with maps, and we can use the lower_bound and upper_bound methods
+    auto chris = mymap.lower_bound(1);
+    auto meg = mymap.upper_bound(1);
+
+    cout << "LB1 = " << chris->second << endl;
+    cout << "UB1 = " << meg->second << endl;
+
+    map<int, string>::iterator mapitr;
+    for (mapitr = mymap.begin(); mapitr != mymap.end(); mapitr++) {
+        cout << "K: " << mapitr->first << ", V: " << mapitr->second << endl;
     }
 
     return 0;
