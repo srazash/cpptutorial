@@ -172,5 +172,63 @@ int main(int argc, char** argv) {
       cout << i << endl;
     }
 
+    // FORWARD LISTS
+    // a forward list is like a list but lack the ability to navigate to the previous element
+    // this is faster and more efficient as the list only maintains links in one direction
+
+    forward_list<int> myflist;
+    myflist.assign({4, 20, 69, 420});
+
+    // we an push and pop only to the front of a forward list
+    myflist.push_front(42069);
+
+    cout << "myflist first value: " << myflist.front() << endl; // we can access the first value with front()
+
+    myflist.pop_front();
+
+    cout << "myflist first value: " << myflist.front() << endl;
+
+    // we can work with iterators on forward lists
+    forward_list<int>::iterator flistitr = myflist.begin();
+
+    // we can insert after using the iterator
+    flistitr = myflist.insert_after(flistitr, 42069);
+
+    for (auto i: myflist) {
+      cout << i << endl;
+    }
+
+    // we can emplace_front() which works like push_front()
+    myflist.emplace_front(0);
+
+    // we can remove specific values
+    myflist.remove(0);
+
+    // we can conditionally remove values
+    myflist.remove_if(
+      [](int x){ return x > 1000; }); // remove values > 1000
+
+    for (auto i: myflist) {
+      cout << i << endl;
+    }
+
+    forward_list<int> myflist2;
+    myflist2.assign({99, 98, 98, 97, 96, 95});
+
+    // like with a list we can:
+    myflist2.unique(); // remove consecutive duplicates
+    myflist2.sort();   // sort values
+    myflist2.reverse(); // reverse the order of values
+
+    // and we can merge forward lists
+    myflist.merge(myflist2);
+
+    for (auto i: myflist) {
+      cout << i << endl;
+    }
+
+    // and we can clear our forward list
+    myflist2.clear();
+
     return 0;
 }
